@@ -1,0 +1,32 @@
+id = "horror-karting"
+name = "Horror Karting"
+version = "1.0.0"
+requires_api = "0.4"
+description = "Karting de terror con 8 monstruos, volante físico y pantalla dividida."
+locales = ["es"]
+default_locale = "es"
+players = [1, 4]
+modes = ["carrera", "contrarreloj"]
+
+[controller]
+layout = "motion"
+skin = "toxinator"
+orientation = "landscape"
+hint = "Girá el teléfono como volante"
+camera = false
+gestures = ["steer"]
+
+[controller.labels]
+cross = "Acelerar"
+circle = "Volver"
+square = "Frenar"
+triangle = "Ítem"
+options = "Pausa/Largar"
+l1 = "Mirar atrás"
+r1 = "Cámara"
+
+[controller.gesture_labels]
+steer = "Volante"
+
+[art]
+motif = "star"

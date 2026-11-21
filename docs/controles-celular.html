@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orientaciones y sensores del celular · Horror Karting</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page: #120d1b;
+    --paper: #1a1327;
+    --paper-2: #211833;
+    --text: #f2eadf;
+    --muted: #b8acc9;
+    --soft: #827596;
+    --rule: #3a2d50;
+    --rule-strong: #57446f;
+    --accent: #f0763e;
+    --accent-tint: rgba(240, 118, 62, 0.10);
+    --cyan: #66d8cf;
+    --cyan-tint: rgba(102, 216, 207, 0.10);
+    --gold: #e5c06a;
+    --gold-tint: rgba(229, 192, 106, 0.10);
+    --green: #9bd67d;
+    --green-tint: rgba(155, 214, 125, 0.10);
+    --violet: #b79ae8;
+    --serif: "Instrument Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: "Geist", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --mono: "Geist Mono", "SFMono-Regular", "Cascadia Mono", Consolas, ui-monospace, monospace;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--page); }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1100px 620px at 50% -240px, rgba(240, 118, 62, 0.10), transparent 70%),
+      var(--page);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 46px 0 60px;
+  }
+
+  .eyebrow {
+    margin: 0 0 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1 {
+    max-width: 820px;
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(42px, 6.2vw, 76px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+  }
+
+  h1 em { font-style: italic; color: var(--accent); }
+
+  .deck {
+    max-width: 660px;
+    margin: 20px 0 0;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .meta li {
+    padding: 5px 9px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.015);
+  }
+
+  section { margin-top: 64px; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.4vw, 40px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .section-head p {
+    margin: 0;
+    max-width: 420px;
+    color: var(--soft);
+    font-size: 13px;
+    text-align: right;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 46px;
+    padding-top: 34px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .hero-copy { max-width: 700px; }
+
+  .hero-copy p { margin: 0 0 16px; color: var(--muted); }
+  .hero-copy strong { color: var(--text); font-weight: 600; }
+
+  .axis-list {
+    display: grid;
+    gap: 0;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--rule);
+  }
+
+  .axis-list li {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .axis-list .glyph {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .axis-list .name { font-weight: 600; }
+  .axis-list .tech {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--soft);
+  }
+
+  .note {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-left: 2px solid var(--accent);
+    background: var(--accent-tint);
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .note b { color: var(--text); font-weight: 600; }
+
+  .diagram-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      var(--paper);
+    background-size: 32px 32px, 32px 32px, auto;
+  }
+
+  .diagram-scroll svg { display: block; height: auto; }
+
+  .hero-svg { width: 100%; min-width: 1120px; }
+
+  figure { margin: 0; }
+
+  figcaption {
+    padding: 10px 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--soft);
+  }
+
+  figcaption b { color: var(--muted); font-weight: 500; }
+
+  .svg-eyebrow {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    fill: var(--soft);
+    text-transform: uppercase;
+  }
+
+  .svg-soft { font-family: var(--sans); font-size: 10px; fill: var(--soft); }
+  .svg-mono { font-family: var(--mono); font-size: 10px; fill: var(--muted); }
+  .svg-serif { font-family: var(--serif); }
+  .svg-symbol { font-family: var(--sans); font-size: 18px; font-weight: 500; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+
+  .card {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--paper);
+  }
+
+  .card.primary {
+    grid-column: 1 / -1;
+    background: linear-gradient(180deg, var(--accent-tint), var(--paper));
+    border-color: rgba(240, 118, 62, 0.42);
+  }
+
+  .card.wide { grid-column: span 1; }
+
+  .card figure {
+    display: flex;
+    align-items: center;
+    height: 132px;
+    margin: -4px 0 2px;
+  }
+
+  .card figure svg { width: 100%; max-height: 128px; }
+
+  .card h3 {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .card p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  .sensor-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 9px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .sensor-line code {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--cyan);
+    overflow-wrap: anywhere;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    padding: 2px 6px;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .badge.in { color: var(--green); }
+  .badge.available { color: var(--gold); }
+  .badge.off { color: var(--soft); }
+  .badge.platform { color: var(--violet); }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; }
+  table { width: 100%; min-width: 760px; border-collapse: collapse; background: var(--paper); }
+  caption { text-align: left; padding: 12px 14px 0; color: var(--soft); font-size: 12px; }
+  th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  thead th {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--soft);
+    background: var(--paper-2);
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td code { font-family: var(--mono); font-size: 11px; color: var(--cyan); }
+  td small { display: block; margin-top: 2px; color: var(--soft); font-size: 11px; }
+  .sensor-name { font-family: var(--mono); font-size: 12px; color: var(--text); }
+
+  .controller-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .controller-figure { border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); }
+  .controller-figure svg { width: 100%; min-width: 760px; }
+  .controller-figure figcaption { border-top: 1px solid var(--rule); }
+
+  .legend {
+    margin: 0;
+    padding: 18px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--paper);
+    display: grid;
+    align-content: start;
+    gap: 10px;
+  }
+
+  .legend h3 {
+    margin: 0 0 4px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--soft);
+  }
+
+  .legend-row {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 10px;
+    align-items: baseline;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .legend-row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .legend-key {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 26px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 5px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+  }
+  .legend-row b { font-weight: 600; }
+  .legend-row span { color: var(--muted); font-size: 13px; }
+  .legend-row .reserved { color: var(--violet); font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em; }
+
+  .checks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 18px;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--paper);
+  }
+
+  fieldset.hot { border-color: rgba(240, 118, 62, 0.34); }
+
+  legend {
+    padding: 0 4px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  legend code {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--soft);
+  }
+
+  .radio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 9px;
+  }
+
+  .radio-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 7px;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .radio-row label:hover { border-color: var(--rule-strong); color: var(--text); }
+
+  .radio-row input {
+    width: 11px;
+    height: 11px;
+    margin: 0;
+    accent-color: var(--accent);
+  }
+
+  .radio-row label:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-tint);
+    color: var(--text);
+  }
+
+  .check-note {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: var(--soft);
+  }
+
+  footer {
+    margin-top: 70px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 28px;
+    color: var(--soft);
+    font-size: 12px;
+  }
+
+  footer p { margin: 0 0 8px; }
+  footer code { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  footer .fine { color: var(--soft); }
+
+  a { color: var(--cyan); }
+
+  ::selection { background: var(--accent); color: var(--ink-strong, #120d1b); }
+
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+  @media (max-width: 980px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .card, .card.primary, .card.wide { grid-column: span 1; }
+    .card.primary { grid-column: 1 / -1; }
+    .checks { grid-template-columns: 1fr; }
+    .section-head { display: block; }
+    .section-head p { text-align: left; margin-top: 8px; }
+    footer { grid-template-columns: 1fr; }
+    .hero-svg { min-width: 1120px; }
+  }
+
+  @media (max-width: 560px) {
+    .page { width: min(100% - 24px, 1180px); padding-top: 28px; }
+    .cards { grid-template-columns: 1fr; }
+    h1 { font-size: 44px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <p class="eyebrow">Horror Karting · referencia de controles</p>
+    <h1>El teléfono<br>como <em>volante</em>.</h1>
+    <p class="deck">Los nombres de las orientaciones, los movimientos y los sensores que los alimentan. Marcá abajo lo que te anda y lo que no: con eso sé exactamente dónde mirar.</p>
+    <ul class="meta">
+      <li>SENSORES · HTTPS</li>
+      <li>JUEGO · HORIZONTAL</li>
+      <li>1–4 CELULARES</li>
+      <li>API 0.3</li>
+    </ul>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h2 id="hero-title">Tres nombres,<br>un solo volante.</h2>
+      <p>La plataforma entrega la orientación del teléfono como <strong>α, β y γ</strong>. El juego no usa un eje suelto: mide el giro del teléfono <strong>en el plano de la pantalla</strong> y de ahí sale el ángulo del volante.</p>
+      <ul class="axis-list">
+        <li>
+          <span class="glyph">α</span>
+          <span><span class="name">Guiñada</span><span class="tech">alpha · yaw · orientation[0]</span></span>
+        </li>
+        <li>
+          <span class="glyph">β</span>
+          <span><span class="name">Cabeceo</span><span class="tech">beta · pitch · orientation[1]</span></span>
+        </li>
+        <li>
+          <span class="glyph">γ</span>
+          <span><span class="name">Alabeo</span><span class="tech">gamma · roll · orientation[2]</span></span>
+        </li>
+      </ul>
+      <p class="note"><b>Ojo:</b> los nombres estándar se miden con el teléfono plano. El juego pide el teléfono <b>horizontal</b> y calcula el volante con la orientación completa. Si el volante no responde al girarlo, probá también inclinarlo de costado.</p>
+    </div>
+
+    <figure class="diagram-scroll">
+      <svg class="hero-svg" viewBox="0 0 1120 540" role="img" aria-labelledby="hk-phones-title hk-phones-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="hk-phones-title">Ejes y rotaciones del teléfono</title>
+        <desc id="hk-phones-desc">Teléfono plano con las rotaciones alpha, beta y gamma, y teléfono horizontal con el giro de volante que usa el juego.</desc>
+        <defs>
+          <marker id="hk-arrow-text" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f2eadf"/>
+          </marker>
+          <marker id="hk-arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0763e"/>
+          </marker>
+          <marker id="hk-arrow-cyan" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#66d8cf"/>
+          </marker>
+          <marker id="hk-arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#e5c06a"/>
+          </marker>
+        </defs>
+
+        <text x="34" y="38" class="svg-eyebrow">01 · LOS NOMBRES ESTÁNDAR</text>
+        <text x="34" y="60" class="svg-soft">teléfono plano, pantalla arriba</text>
+
+        <!-- flat phone -->
+        <rect x="92" y="128" width="320" height="330" rx="26" fill="#0d0914" stroke="#57446f" stroke-width="1.5"/>
+        <rect x="112" y="148" width="280" height="290" rx="14" fill="#171022" stroke="#3a2d50"/>
+        <circle cx="252" cy="104" r="5" fill="#3a2d50"/>
+        <rect x="222" y="450" width="60" height="4" rx="2" fill="#3a2d50"/>
+        <text x="252" y="492" class="svg-mono" text-anchor="middle">arriba / top</text>
+
+        <!-- X and Y table axes -->
+        <line x1="92" y1="293" x2="452" y2="293" stroke="#e5c06a" stroke-width="1" stroke-dasharray="4 5" marker-end="url(#hk-arrow-gold)"/>
+        <text x="462" y="298" class="svg-mono" fill="#e5c06a">X</text>
+        <line x1="252" y1="470" x2="252" y2="112" stroke="#66d8cf" stroke-width="1" stroke-dasharray="4 5" marker-end="url(#hk-arrow-cyan)"/>
+        <text x="262" y="112" class="svg-mono" fill="#66d8cf">Y</text>
+
+        <!-- Z out of screen -->
+        <circle cx="252" cy="293" r="13" fill="none" stroke="#f0763e" stroke-width="1.3"/>
+        <circle cx="252" cy="293" r="3.5" fill="#f0763e"/>
+        <text x="272" y="282" class="svg-mono" fill="#f0763e">Z · afuera</text>
+
+        <!-- alpha arc around Z -->
+        <path d="M 196 360 A 104 104 0 0 1 196 226" fill="none" stroke="#f0763e" stroke-width="2.2" stroke-linecap="round" marker-end="url(#hk-arrow-accent)"/>
+        <text x="142" y="302" class="svg-serif" fill="#f0763e" font-size="30">α</text>
+        <text x="128" y="322" class="svg-mono" fill="#f0763e">guiñada</text>
+        <text x="128" y="337" class="svg-soft">yaw · gira sobre Z</text>
+
+        <!-- beta arc around X -->
+        <path d="M 330 118 A 92 42 0 0 1 412 154" fill="none" stroke="#e5c06a" stroke-width="2.2" stroke-linecap="round" marker-end="url(#hk-arrow-gold)"/>
+        <text x="408" y="128" class="svg-serif" fill="#e5c06a" font-size="30">β</text>
+        <text x="438" y="128" class="svg-mono" fill="#e5c06a">cabeceo</text>
+        <text x="438" y="143" class="svg-soft">pitch · gira sobre X</text>
+
+        <!-- gamma arc around Y -->
+        <path d="M 430 400 A 90 40 0 0 1 366 448" fill="none" stroke="#66d8cf" stroke-width="2.2" stroke-linecap="round" marker-end="url(#hk-arrow-cyan)"/>
+        <text x="432" y="414" class="svg-serif" fill="#66d8cf" font-size="30">γ</text>
+        <text x="463" y="414" class="svg-mono" fill="#66d8cf">alabeo</text>
+        <text x="463" y="429" class="svg-soft">roll · gira sobre Y</text>
+
+        <line x1="584" y1="80" x2="584" y2="470" stroke="#3a2d50" stroke-width="1" stroke-dasharray="2 7"/>
+
+        <text x="600" y="38" class="svg-eyebrow">02 · EL VOLANTE DEL JUEGO</text>
+        <text x="600" y="60" class="svg-soft">teléfono horizontal, pantalla hacia vos</text>
+
+        <!-- landscape phone -->
+        <rect x="616" y="150" width="456" height="262" rx="30" fill="#0d0914" stroke="#57446f" stroke-width="1.5"/>
+        <rect x="636" y="170" width="416" height="222" rx="16" fill="#171022" stroke="#3a2d50"/>
+        <circle cx="1002" cy="181" r="4.5" fill="#3a2d50"/>
+        <rect x="812" y="392" width="64" height="4" rx="2" fill="#3a2d50"/>
+
+        <!-- screen-plane wheel arc -->
+        <circle cx="844" cy="281" r="82" fill="none" stroke="#f0763e" stroke-width="2.2" stroke-dasharray="10 7" opacity="0.5"/>
+        <path d="M 790 214 A 92 92 0 1 1 758 319" fill="none" stroke="#f0763e" stroke-width="2.6" stroke-linecap="round" marker-end="url(#hk-arrow-accent)"/>
+        <text x="844" y="276" class="svg-serif" fill="#f2eadf" font-size="34" text-anchor="middle">↻</text>
+        <text x="844" y="300" class="svg-mono" fill="#f0763e" text-anchor="middle">giro del volante</text>
+
+        <!-- Z normal -->
+        <circle cx="1042" cy="200" r="11" fill="none" stroke="#f0763e" stroke-width="1.2"/>
+        <circle cx="1042" cy="200" r="3" fill="#f0763e"/>
+        <text x="1034" y="178" class="svg-mono" fill="#f0763e">Z</text>
+
+        <!-- wheel -->
+        <circle cx="880" cy="352" r="22" fill="none" stroke="#f2eadf" stroke-width="2"/>
+        <line x1="858" y1="352" x2="902" y2="352" stroke="#f2eadf" stroke-width="2"/>
+        <line x1="880" y1="330" x2="880" y2="374" stroke="#f2eadf" stroke-width="2"/>
+        <circle cx="880" cy="352" r="4" fill="#f2eadf"/>
+
+        <text x="616" y="450" class="svg-mono" fill="#66d8cf">orientation</text>
+        <text x="720" y="450" class="svg-soft">· α + β + γ, relativo a la calibración</text>
+
+        <text x="616" y="492" class="svg-mono" fill="#b8acc9">el juego lo llama “volante”</text>
+        <text x="800" y="492" class="svg-soft">no es un eje suelto</text>
+
+        <!-- note -->
+        <rect x="600" y="508" width="486" height="1" fill="#3a2d50"/>
+      </svg>
+      <figcaption><b>En criollo:</b> α, β y γ son los tres nombres de cómo rota el teléfono. Para el volante, lo que importa es el giro en el plano de la pantalla; por eso el juego combina los tres.</figcaption>
+    </figure>
+  </section>
+
+  <section aria-labelledby="movements-title">
+    <div class="section-head">
+      <h2 id="movements-title">Movimientos</h2>
+      <p>Qué hacés con el teléfono, qué sensor lo lee y si el juego lo usa hoy.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card primary">
+        <figure aria-hidden="true">
+          <svg viewBox="0 0 300 140" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <rect x="48" y="38" width="204" height="90" rx="14" fill="#0d0914" stroke="#f0763e" stroke-width="1.4"/>
+            <circle cx="150" cy="83" r="38" fill="none" stroke="#f0763e" stroke-width="1.8" stroke-dasharray="6 5" opacity="0.5"/>
+            <path d="M 113 60 A 44 44 0 1 1 107 111" fill="none" stroke="#f0763e" stroke-width="2.2" stroke-linecap="round" marker-end="url(#hk-arrow-accent)"/>
+            <text x="150" y="88" font-family="'Instrument Serif', Georgia, serif" font-size="26" fill="#f2eadf" text-anchor="middle">↻</text>
+          </svg>
+        </figure>
+        <h3>Volante físico</h3>
+        <p>Girás el teléfono como un volante, en el plano de la pantalla. Es el gesto principal del juego.</p>
+        <div class="sensor-line">
+          <code>orientation · α β γ</code>
+          <span class="badge in">En uso</span>
+        </div>
+      </article>
+
+      <article class="card wide">
+        <figure aria-hidden="true">
+          <svg viewBox="0 0 300 140" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <rect x="55" y="30" width="190" height="86" rx="14" fill="#0d0914" stroke="#66d8cf" stroke-width="1.3"/>
+            <line x1="150" y1="73" x2="150" y2="100" stroke="#3a2d50" stroke-width="1"/>
+            <path d="M 80 118 Q 150 88 220 118" fill="none" stroke="#66d8cf" stroke-width="1.7" stroke-linecap="round" marker-end="url(#hk-arrow-cyan)"/>
+            <path d="M 220 93 Q 150 63 80 93" fill="none" stroke="#66d8cf" stroke-width="1.7" stroke-linecap="round" opacity="0.45"/>
+            <text x="150" y="72" font-family="'Geist Mono', monospace" font-size="10" fill="#66d8cf" text-anchor="middle">γ</text>
+          </svg>
+        </figure>
+        <h3>Alabeo</h3>
+        <p>Inclinás los lados izquierda/derecha. El volante puede responder; no se usa como eje directo.</p>
+        <div class="sensor-line">
+          <code>gamma · orientation[2]</code>
+          <span class="badge available">Disponible</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure aria-hidden="true">
+          <svg viewBox="0 0 300 140" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <rect x="92" y="34" width="116" height="82" rx="13" fill="#0d0914" stroke="#e5c06a" stroke-width="1.3"/>
+            <path d="M 72 58 Q 92 30 128 40" fill="none" stroke="#e5c06a" stroke-width="1.7" stroke-linecap="round" marker-end="url(#hk-arrow-gold)"/>
+            <path d="M 228 92 Q 208 120 172 110" fill="none" stroke="#e5c06a" stroke-width="1.7" stroke-linecap="round" opacity="0.45"/>
+            <text x="150" y="86" font-family="'Geist Mono', monospace" font-size="10" fill="#e5c06a" text-anchor="middle">β</text>
+          </svg>
+        </figure>
+        <h3>Cabeceo</h3>
+        <p>Inclinás el borde de arriba hacia adelante o atrás. Está en el frame, pero el juego no lo usa.</p>
+        <div class="sensor-line">
+          <code>beta · orientation[1]</code>
+          <span class="badge off">No usado</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure aria-hidden="true">
+          <svg viewBox="0 0 300 140" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <rect x="92" y="48" width="116" height="70" rx="13" fill="#0d0914" stroke="#b79ae8" stroke-width="1.3"/>
+            <path d="M 82 70 A 68 26 0 1 1 218 70" fill="none" stroke="#b79ae8" stroke-width="1.7" stroke-linecap="round" marker-end="url(#hk-arrow-text)" opacity="0.8"/>
+            <text x="150" y="90" font-family="'Geist Mono', monospace" font-size="10" fill="#b79ae8" text-anchor="middle">α</text>
+          </svg>
+        </figure>
+        <h3>Guiñada</h3>
+        <p>Girás el teléfono sobre la vertical, como una brújula. El juego no lo usa.</p>
+        <div class="sensor-line">
+          <code>alpha · orientation[0]</code>
+          <span class="badge off">No usado</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure aria-hidden="true">
+          <svg viewBox="0 0 300 140" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <rect x="98" y="46" width="104" height="76" rx="13" fill="#0d0914" stroke="#827596" stroke-width="1.3"/>
+            <path d="M 60 62 Q 72 48 84 56" fill="none" stroke="#827596" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M 52 82 Q 70 66 88 74" fill="none" stroke="#827596" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+            <path d="M 216 62 Q 228 48 240 56" fill="none" stroke="#827596" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M 212 82 Q 230 66 248 74" fill="none" stroke="#827596" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+            <text x="150" y="90" font-family="'Geist Mono', monospace" font-size="9" fill="#b8acc9" text-anchor="middle">accel</text>
+          </svg>
+        </figure>
+        <h3>Sacudida</h3>
+        <p>Movés o sacudís el teléfono. El acelerómetro lo mide, pero el juego no lo usa.</p>
+        <div class="sensor-line">
+          <code>accel · x y z</code>
+          <span class="badge off">No usado</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure aria-hidden="true">
+          <svg viewBox="0 0 300 140" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <rect x="56" y="34" width="188" height="88" rx="14" fill="#0d0914" stroke="#3a2d50" stroke-width="1.2"/>
+            <circle cx="106" cy="78" r="24" fill="none" stroke="#827596" stroke-width="1.4"/>
+            <circle cx="106" cy="78" r="7" fill="#9bd67d"/>
+            <line x1="106" y1="78" x2="126" y2="64" stroke="#9bd67d" stroke-width="1.5"/>
+            <path d="M 160 78 L 232 78" stroke="#9bd67d" stroke-width="1.6" marker-end="url(#hk-arrow-text)" opacity="0.65"/>
+            <path d="M 160 78 L 216 100" stroke="#9bd67d" stroke-width="1.6" opacity="0.3"/>
+          </svg>
+        </figure>
+        <h3>Stick</h3>
+        <p>El volante de respaldo. Si no hay sensores o el teléfono no se movió, el stick maneja el kart.</p>
+        <div class="sensor-line">
+          <code>axes.move_x / move_y</code>
+          <span class="badge in">En uso</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="sensors-title">
+    <div class="section-head">
+      <h2 id="sensors-title">Sensores</h2>
+      <p>Los nombres exactos del <code style="font-family:var(--mono);font-size:12px;color:var(--cyan)">ControllerFrame</code> de Toxinator y qué hace el juego con cada uno.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <caption>Valores relativos a la calibración neutra del teléfono. Todo llega en el frame de la plataforma.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Sensor / campo</th>
+            <th scope="col">Qué mide</th>
+            <th scope="col">En el juego</th>
+            <th scope="col">Dónde</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="sensor-name">orientation</span><small>alpha, beta, gamma</small></td>
+            <td>Orientación en grados, relativa a la calibración. α = guiñada, β = cabeceo, γ = alabeo.<small>alpha se envuelve a ±180°.</small></td>
+            <td><span class="badge in">Volante</span><small>También centra el volante y detecta si hay sensores.</small></td>
+            <td><code>frame.orientation</code></td>
+          </tr>
+          <tr>
+            <td><span class="sensor-name">gyro</span><small>alpha, beta, gamma</small></td>
+            <td>Velocidad angular (rad/s).<small>La plataforma lo expone; el juego no lo usa en la v1.</small></td>
+            <td><span class="badge off">No usado</span></td>
+            <td><code>frame.gyro</code></td>
+          </tr>
+          <tr>
+            <td><span class="sensor-name">accel</span><small>x, y, z</small></td>
+            <td>Aceleración en m/s², con gravedad incluida.</td>
+            <td><span class="badge off">No usado</span></td>
+            <td><code>frame.accel</code></td>
+          </tr>
+          <tr>
+            <td><span class="sensor-name">axes</span><small>move_x, move_y</small></td>
+            <td>Stick izquierdo de −1 a 1; +y es arriba.</td>
+            <td><span class="badge in">Respaldo</span><small>Si el volante no está activo, maneja el stick.</small></td>
+            <td><code>frame.axes</code></td>
+          </tr>
+          <tr>
+            <td><span class="sensor-name">pointer</span><small>x, y</small></td>
+            <td>Puntero normalizado 0..1 desde la zona táctil o el mouse.</td>
+            <td><span class="badge in">Menús</span><small>Selección de personaje y menús.</small></td>
+            <td><code>frame.pointer</code></td>
+          </tr>
+          <tr>
+            <td><span class="sensor-name">touch</span><small>id, x, y, pressure</small></td>
+            <td>Toques simultáneos normalizados.</td>
+            <td><span class="badge off">No en carrera</span><small>Disponible para menús.</small></td>
+            <td><code>frame.touch</code></td>
+          </tr>
+          <tr>
+            <td><span class="sensor-name">buttons</span><small>cross, square, triangle, options, l1, r1</small></td>
+            <td>Botones canónicos del mando.<small>circle queda reservado por la plataforma.</small></td>
+            <td><span class="badge in">En uso</span><small>Acelerar, frenar, ítem, cámara, mirar atrás, pausa.</small></td>
+            <td><code>frame.buttons</code></td>
+          </tr>
+          <tr>
+            <td><span class="sensor-name">ctx.phone</span><small>vibrate(), tone(), stop()</small></td>
+            <td>Vibración y tono corto en el celular.</td>
+            <td><span class="badge in">Feedback</span><small>Impactos, ítems y vueltas.</small></td>
+            <td><code>ctx.phone</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="controller-title">
+    <div class="section-head">
+      <h2 id="controller-title">El mando</h2>
+      <p>Dónde está cada cosa en el celular y cómo se llama en el juego.</p>
+    </div>
+
+    <div class="controller-grid">
+      <figure class="controller-figure">
+        <div class="diagram-scroll" style="border:0;border-radius:0;background:var(--paper)">
+          <svg viewBox="0 0 760 430" role="img" aria-labelledby="hk-controller-title hk-controller-desc" xmlns="http://www.w3.org/2000/svg">
+            <title id="hk-controller-title">Distribución del mando en el celular</title>
+            <desc id="hk-controller-desc">Teléfono horizontal con el stick a la izquierda, la zona táctil en el centro y los botones de acción a la derecha.</desc>
+            <rect x="28" y="28" width="704" height="374" rx="30" fill="#0d0914" stroke="#57446f" stroke-width="1.5"/>
+            <rect x="48" y="48" width="664" height="334" rx="18" fill="#151021" stroke="#3a2d50"/>
+
+            <!-- shoulders -->
+            <rect x="70" y="58" width="120" height="28" rx="7" fill="#211833" stroke="#57446f"/>
+            <text x="130" y="77" class="svg-mono" text-anchor="middle" fill="#b8acc9">L1 · MIRAR ATRÁS</text>
+            <rect x="570" y="58" width="120" height="28" rx="7" fill="#211833" stroke="#57446f"/>
+            <text x="630" y="77" class="svg-mono" text-anchor="middle" fill="#b8acc9">R1 · CÁMARA</text>
+
+            <!-- stick -->
+            <circle cx="148" cy="238" r="58" fill="none" stroke="#3a2d50" stroke-width="1.4"/>
+            <circle cx="148" cy="238" r="33" fill="#211833" stroke="#66d8cf" stroke-width="1.4"/>
+            <circle cx="148" cy="238" r="10" fill="#66d8cf"/>
+            <line x1="148" y1="238" x2="180" y2="220" stroke="#66d8cf" stroke-width="2" opacity="0.6"/>
+            <text x="148" y="322" class="svg-mono" text-anchor="middle" fill="#66d8cf">STICK</text>
+            <text x="148" y="338" class="svg-soft" text-anchor="middle">move_x / move_y</text>
+
+            <!-- touch zone -->
+            <rect x="248" y="156" width="196" height="164" rx="10" fill="#171022" stroke="#3a2d50"/>
+            <line x1="313" y1="156" x2="313" y2="320" stroke="#2a203c"/>
+            <line x1="378" y1="156" x2="378" y2="320" stroke="#2a203c"/>
+            <line x1="248" y1="211" x2="444" y2="211" stroke="#2a203c"/>
+            <line x1="248" y1="265" x2="444" y2="265" stroke="#2a203c"/>
+            <text x="346" y="240" class="svg-mono" text-anchor="middle" fill="#827596">ZONA TÁCTIL</text>
+            <text x="346" y="256" class="svg-soft" text-anchor="middle">pointer</text>
+
+            <!-- face buttons -->
+            <circle cx="626" cy="178" r="25" fill="#211833" stroke="#e5c06a"/>
+            <text x="626" y="184" class="svg-symbol" text-anchor="middle" fill="#e5c06a">△</text>
+            <text x="626" y="218" class="svg-soft" text-anchor="middle">ítem</text>
+
+            <circle cx="566" cy="238" r="25" fill="#211833" stroke="#66d8cf"/>
+            <text x="566" y="244" class="svg-symbol" text-anchor="middle" fill="#66d8cf">□</text>
+            <text x="566" y="278" class="svg-soft" text-anchor="middle">frenar</text>
+
+            <circle cx="686" cy="238" r="25" fill="#211833" stroke="#b79ae8"/>
+            <text x="686" y="244" class="svg-symbol" text-anchor="middle" fill="#b79ae8">○</text>
+            <text x="686" y="278" class="svg-soft" text-anchor="middle">volver</text>
+
+            <circle cx="626" cy="298" r="25" fill="#211833" stroke="#f0763e"/>
+            <text x="626" y="304" class="svg-symbol" text-anchor="middle" fill="#f0763e">×</text>
+            <text x="626" y="338" class="svg-soft" text-anchor="middle">acelerar</text>
+
+            <rect x="300" y="350" width="160" height="24" rx="7" fill="#211833" stroke="#3a2d50"/>
+            <text x="380" y="366" class="svg-mono" text-anchor="middle" fill="#b8acc9">options · PAUSA</text>
+
+            <text x="48" y="404" class="svg-mono" fill="#827596">El juego pide horizontal</text>
+            <text x="712" y="404" class="svg-mono" fill="#827596" text-anchor="end">○ = plataforma · no gameplay</text>
+          </svg>
+        </div>
+        <figcaption><b>Dos manos:</b> el pulgar izquierdo en el stick, el derecho en los botones. Si usás el volante físico, el stick queda libre y el juego ignora sus lecturas.</figcaption>
+      </figure>
+
+      <div class="legend">
+        <h3>En carrera</h3>
+        <div class="legend-row"><span class="legend-key">×</span><span><b>Acelerar.</b> Mantené para acelerar; en la largada, soltá y apretá justo antes del “¡LARGADA!” para el turbo.</span></div>
+        <div class="legend-row"><span class="legend-key">□</span><span><b>Frenar / derrapar.</b> Con el volante girado, mantené □ para derrapar y soltar con mini-turbo.</span></div>
+        <div class="legend-row"><span class="legend-key">△</span><span><b>Ítem.</b> Usa el ítem que llevás (nitro, aceite, calabaza, escudo, telaraña o motosierra).</span></div>
+        <div class="legend-row"><span class="legend-key">R1</span><span><b>Cámara.</b> Cerca → lejos → capó → cenital.</span></div>
+        <div class="legend-row"><span class="legend-key">L1</span><span><b>Mirar atrás.</b> Mantené para ver quién viene.</span></div>
+        <div class="legend-row"><span class="legend-key">≡</span><span><b>Pausa / largar.</b> En el título larga; en carrera pausa; en pausa reanuda.</span></div>
+        <div class="legend-row"><span class="legend-key">○</span><span><b>Volver.</b> Es de la plataforma: sale al launcher. <span class="reserved">NO GAMEPLAY</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="check-title">
+    <div class="section-head">
+      <h2 id="check-title">Probá y marcá</h2>
+      <p>No se guarda nada. Marcá cada cosa después de probarla y contame las que fallan.</p>
+    </div>
+
+    <form class="checks" aria-labelledby="check-title">
+      <fieldset class="hot">
+        <legend>Volante físico<code>orientation · α β γ</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-volante" value="ok">Anda</label>
+          <label><input type="radio" name="check-volante" value="fail">Falla</label>
+          <label><input type="radio" name="check-volante" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Centrar el volante<code>pausa · “CENTRAR VOLANTES”</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-centrar" value="ok">Anda</label>
+          <label><input type="radio" name="check-centrar" value="fail">Falla</label>
+          <label><input type="radio" name="check-centrar" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sensibilidad / invertir<code>pausa · volante</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-sens" value="ok">Anda</label>
+          <label><input type="radio" name="check-sens" value="fail">Falla</label>
+          <label><input type="radio" name="check-sens" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Stick de respaldo<code>axes.move_x / move_y</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-stick" value="ok">Anda</label>
+          <label><input type="radio" name="check-stick" value="fail">Falla</label>
+          <label><input type="radio" name="check-stick" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Acelerar<code>buttons.cross</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-cross" value="ok">Anda</label>
+          <label><input type="radio" name="check-cross" value="fail">Falla</label>
+          <label><input type="radio" name="check-cross" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Frenar / derrapar<code>buttons.square</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-square" value="ok">Anda</label>
+          <label><input type="radio" name="check-square" value="fail">Falla</label>
+          <label><input type="radio" name="check-square" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Ítem<code>buttons.triangle</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-triangle" value="ok">Anda</label>
+          <label><input type="radio" name="check-triangle" value="fail">Falla</label>
+          <label><input type="radio" name="check-triangle" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Cámara<code>buttons.r1</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-r1" value="ok">Anda</label>
+          <label><input type="radio" name="check-r1" value="fail">Falla</label>
+          <label><input type="radio" name="check-r1" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Mirar atrás<code>buttons.l1</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-l1" value="ok">Anda</label>
+          <label><input type="radio" name="check-l1" value="fail">Falla</label>
+          <label><input type="radio" name="check-l1" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Pausa<code>buttons.options</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-options" value="ok">Anda</label>
+          <label><input type="radio" name="check-options" value="fail">Falla</label>
+          <label><input type="radio" name="check-options" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Vibración<code>ctx.phone.vibrate()</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-vibra" value="ok">Anda</label>
+          <label><input type="radio" name="check-vibra" value="fail">Falla</label>
+          <label><input type="radio" name="check-vibra" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tono<code>ctx.phone.tone()</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-tone" value="ok">Anda</label>
+          <label><input type="radio" name="check-tone" value="fail">Falla</label>
+          <label><input type="radio" name="check-tone" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Puntero en menús<code>pointer</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-pointer" value="ok">Anda</label>
+          <label><input type="radio" name="check-pointer" value="fail">Falla</label>
+          <label><input type="radio" name="check-pointer" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2 jugadores<code>pantalla dividida</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-2p" value="ok">Anda</label>
+          <label><input type="radio" name="check-2p" value="fail">Falla</label>
+          <label><input type="radio" name="check-2p" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>4 jugadores<code>pantalla dividida</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-4p" value="ok">Anda</label>
+          <label><input type="radio" name="check-4p" value="fail">Falla</label>
+          <label><input type="radio" name="check-4p" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sensores por HTTPS<code>--cloudflare / --https</code></legend>
+        <div class="radio-row">
+          <label><input type="radio" name="check-https" value="ok">Anda</label>
+          <label><input type="radio" name="check-https" value="fail">Falla</label>
+          <label><input type="radio" name="check-https" value="untested" checked>No probado</label>
+        </div>
+      </fieldset>
+    </form>
+
+    <p class="check-note">Tip: si estás en HTTP y los sensores no aparecen, el juego cae solo al stick. Para probar el volante físico, abrí la consola con <code style="font-family:var(--mono);font-size:12px;color:var(--cyan)">--cloudflare</code> y aceptá el permiso de movimiento en el primer toque (iOS).</p>
+  </section>
+
+  <footer>
+    <div>
+      <p><b>Nombres de la referencia:</b> <code>ControllerFrame</code> de Toxinator 0.3 — <code>orientation</code>, <code>gyro</code>, <code>accel</code>, <code>axes</code>, <code>pointer</code>, <code>touch</code>, <code>buttons</code>. El feedback es <code>ctx.phone</code>. <code>circle</code> queda reservado por la plataforma.</p>
+      <p class="fine">El juego pide el teléfono horizontal. El volante se calibra en la cuenta atrás y se puede centrar desde la pausa. Si no hay sensores, el stick es el respaldo.</p>
+    </div>
+    <div>
+      <p><b>Horror Karting</b> · Cementerio del Pueblo</p>
+      <p class="fine">Referencia de controles · <code>~/Projects/toxinator-games/horror-karting</code></p>
+      <p class="fine">¿Algo falla? Contame el movimiento y el sensor; con esta hoja ubicamos el problema.</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
