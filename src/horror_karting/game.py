@@ -291,8 +291,10 @@ class HorrorKarting:
                     self._cycle_difficulty(-1)
                     self.diff_cooldown = 0.35
                     break
-        for slot, inp in self._joined_inputs():
+        for slot, inp in self._any_input():
             if inp.options_edge:
+                if not self.players:
+                    self._join(slot)
                 self._begin_select(trial=False)
                 return
         for slot, inp in self._any_input():
